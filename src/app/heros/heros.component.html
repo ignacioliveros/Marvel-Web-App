@@ -1,0 +1,16 @@
+<ngb-accordion [closeOthers]="true">
+  <ngb-panel *ngFor='let hero of heros' title={{hero.name}}>
+    <ng-template ngbPanelContent>
+      <div class="row justify-content-md-center ">
+        <div class="col ">
+          <img src={{hero.image.path+hero.image.size+hero.image.extension}} class="img-fluid" alt="Responsive image">
+        </div>
+      </div>
+      <div class="row">       
+        {{hero.description}}
+      </div>
+    </ng-template>
+  </ngb-panel>
+</ngb-accordion>
+
+<ngb-pagination [collectionSize]="collectionSize"  [(page)]="page" [maxSize]="5" (pageChange)='getHeros()' [boundaryLinks]="true"></ngb-pagination>
