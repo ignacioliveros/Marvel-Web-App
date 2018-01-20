@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # MarvelWebApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.0.
@@ -25,3 +26,7 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+=======
+# Marvel-Web-App
+Simple web app using Marvel Api
+>>>>>>> d80e076e71f2a88101be6306a147255f19055b5e
