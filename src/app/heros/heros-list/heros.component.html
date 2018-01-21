@@ -1,16 +1,26 @@
 <ngb-accordion [closeOthers]="true">
-  <ngb-panel *ngFor='let hero of heros' title={{hero.name}}>
+  <ngb-panel *ngFor='let hero of heros'>
+    <ng-template ngbPanelTitle>
+      <span class="panel"><b>{{hero.name}}</b> </span>
+    </ng-template>
     <ng-template ngbPanelContent>
       <div class="row justify-content-md-center ">
         <div class="col ">
           <img src={{hero.image.path+hero.image.size+hero.image.extension}} class="img-fluid" alt="Responsive image">
         </div>
       </div>
-      <div class="row">       
-        {{hero.description}}
+      <div class="row">
+        <div class="col margin-10">
+          {{hero.description}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col margin-10">
+          <a class="btn btn-outline-primary" [routerLink]="['/heros', hero.id]" [queryParams]="{ page: page }">See more....</a>
+        </div>
       </div>
     </ng-template>
   </ngb-panel>
 </ngb-accordion>
 
-<ngb-pagination [collectionSize]="collectionSize"  [(page)]="page" [maxSize]="5" (pageChange)='getHeros()' [boundaryLinks]="true"></ngb-pagination>
+<ngb-pagination *ngIf="collectionSize" [collectionSize]="collectionSize" [(page)]="page" [maxSize]="5" (pageChange)='getHeros()' [boundaryLinks]="true"></ngb-pagination>
