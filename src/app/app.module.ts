@@ -7,8 +7,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { HerosComponent } from './heros/heros.component';
-import { HerosService } from './heros/heros.service';
+import { HerosComponent } from './heros/heros-list/heros.component';
+import { HerosService } from './heros/hero-services/heros.service';
 
 
 @NgModule({

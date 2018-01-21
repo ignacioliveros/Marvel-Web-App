@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { catchError, map, tap } from 'rxjs/operators';
-import { Hero, HerosViewModel } from './hero';
+import { Hero, HerosViewModel } from '../hero';
 
 
 
