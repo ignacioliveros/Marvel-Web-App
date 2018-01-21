@@ -15,3 +15,7 @@ export interface HerosViewModel{
     heros: Hero[];
     collectionSize: number;    
 }
+
+export interface HeroDetailViewModel{
+    hero: Hero;   
+}

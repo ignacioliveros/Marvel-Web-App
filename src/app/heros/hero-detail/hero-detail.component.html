@@ -1,5 +1,14 @@
-<div class="row">
-  <div class="col margin-10">
-    <a class="btn btn-outline-primary" (click)="onBack()">Back</a>
+<div class="">  
+  <div class="row">
+    <div class="col border">
+      <div *ngIf='hero' class="card center " style="max-width: 32rem;">
+        <img src={{hero.image.path+hero.image.size+hero.image.extension}} class="card-img-top" alt="Card image cap">       
+        <div class="card-body">
+          <h5 class="card-title">{{hero.name}}</h5>
+          <p class="card-text">{{hero.description}}</p>
+          <a class="btn btn-primary" (click)="onBack()">Back</a>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

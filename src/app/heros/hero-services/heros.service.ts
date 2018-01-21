@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { catchError, map, tap } from 'rxjs/operators';
-import { Hero, HerosViewModel } from '../hero';
+import { Hero, HerosViewModel, HeroDetailViewModel } from '../hero';
 
 
 
@@ -15,17 +15,24 @@ export class HerosService {
   getHeros(): Observable<HerosViewModel>{
     return this.http.get(`${url}${security}`)
       .pipe(
-      map(data=>data=this.mappingToHero(data))
+      map(data=>data=this.mappingToHeroViewModel(data))
     );
   }  
   getHerosPagination(offset: number): Observable<HerosViewModel> {
     return this.http.get(`${url}?limit=20&offset=${offset}${security}`)
       .pipe(
-      map(data => data = this.mappingToHero(data))
+      map(data => data = this.mappingToHeroViewModel(data))
+      );
+  } 
+  
+  getHero(id: number): Observable<HeroDetailViewModel> {      
+    return this.http.get(`${url}/${id}${security}`)
+      .pipe(
+      map(data =>data=this.mappingToHeroDetailViewModel(data))
       );
   }  
 
-  mappingToHero(data): HerosViewModel {
+  mappingToHeroViewModel(data): HerosViewModel {
     let results = data['data'].results; 
     let herosViewModel: HerosViewModel;
     let hero: Hero;
@@ -43,6 +50,23 @@ export class HerosService {
       collectionSize: Math.round(data['data'].total/20)    
     }
     return herosViewModel;
+  }
+
+  mappingToHeroDetailViewModel(data): HeroDetailViewModel {   
+    let results = data['data'].results[0];
+    let heroDetailViewModel: HeroDetailViewModel;
+    let hero: Hero;
+    hero = {
+      id: results.id,
+      name: results.name,
+      description: results.description,
+      image: {
+        path: results.thumbnail.path, extension: results.thumbnail.extension, size: '/portrait_xlarge.'
+      }      
+    }    
+    heroDetailViewModel = { hero: hero };
+    return heroDetailViewModel;
+
   }
 
 }
