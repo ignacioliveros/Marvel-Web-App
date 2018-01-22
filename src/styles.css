@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css";
+@import"../node_modules/font-awesome/css/font-awesome.css";
 
 .text-center{
     text-align: center;
@@ -7,4 +8,5 @@
 .footer{
     background-color: rgba(0,0,0,.03);
     height: 80px;    
+    margin: 10px;
 }

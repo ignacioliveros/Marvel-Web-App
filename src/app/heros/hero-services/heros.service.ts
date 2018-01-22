@@ -61,7 +61,7 @@ export class HerosService {
       name: results.name,
       description: results.description,
       image: {
-        path: results.thumbnail.path, extension: results.thumbnail.extension, size: '/portrait_xlarge.'
+        path: results.thumbnail.path, extension: results.thumbnail.extension, size: '/portrait_uncanny.'
       }      
     }    
     heroDetailViewModel = { hero: hero };

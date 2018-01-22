@@ -1,7 +1,7 @@
 <ngb-accordion [closeOthers]="true">
   <ngb-panel *ngFor='let hero of heros'>
     <ng-template ngbPanelTitle>
-      <span class="panel"><b>{{hero.name}}</b> </span>
+      <span class="panel"><b>{{hero.name | uppercase}}</b> </span>
     </ng-template>
     <ng-template ngbPanelContent>
       <div class="row justify-content-md-center ">

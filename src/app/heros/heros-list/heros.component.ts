@@ -9,8 +9,9 @@ import { Hero } from '../hero';
 
 @Component({
   selector: 'app-hero',
-  templateUrl: './heros.component.html',
-  styleUrls: ['./heros.component.scss'],
+  moduleId: module.id,
+  templateUrl: 'heros.component.html',
+  styleUrls: ['heros.component.scss'],
   providers: [NgbPaginationConfig]
 })
 export class HerosComponent implements OnInit {
