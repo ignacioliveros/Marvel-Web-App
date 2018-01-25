@@ -2,7 +2,7 @@
   <div class="input-group-prepend">
     <span class="input-group-text" id="basic-addon1">Name</span>
   </div>
-  <input type="text" class="form-control" placeholder="hero name" aria-label="name"[(ngModel)]='searchName' (keyup)='getHeros()' aria-describedby="basic-addon1">
+  <input type="text" class="form-control" placeholder="hero's name" aria-label="name"[(ngModel)]='searchName' (keyup)='getHeros()' aria-describedby="basic-addon1">
 </div>
 <ngb-accordion [closeOthers]="true">
   <ngb-panel *ngFor='let hero of heros'>
