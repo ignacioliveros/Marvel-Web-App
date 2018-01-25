@@ -4,29 +4,30 @@ import { Observable } from 'rxjs/Observable';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Hero, HerosViewModel, HeroDetailViewModel } from '../hero';
 
-
-
 const url = 'https://gateway.marvel.com:443/v1/public/characters';
-const security = '?ts=1516309712&apikey=8ba269f53b575b7f50733326f96d8fa1&hash=ae89380f342530b61c2ad4a8074a86eb'; // NO GOOD.....
+const security = 'ts=1516309712&apikey=8ba269f53b575b7f50733326f96d8fa1&hash=ae89380f342530b61c2ad4a8074a86eb'; // NO GOOD.....
+
 @Injectable()
 export class HerosService {
   constructor(private http: HttpClient) { }
 
-  getHeros(): Observable<HerosViewModel>{
-    return this.http.get(`${url}${security}`)
-      .pipe(
-      map(data=>data=this.mappingToHeroViewModel(data))
-    );
-  }  
-  getHerosPagination(offset: number): Observable<HerosViewModel> {
-    return this.http.get(`${url}?limit=20&offset=${offset}${security}`)
-      .pipe(
-      map(data => data = this.mappingToHeroViewModel(data))
-      );
+  getHeros(offset: number, name?: string): Observable<HerosViewModel> {
+    if (name) {
+      return this.http.get(`${url}?nameStartsWith=${name}&limit=20&offset=${offset}&${security}`)
+        .pipe(
+        map(data => data = this.mappingToHeroViewModel(data))
+        );
+    } else {
+      return this.http.get(`${url}?limit=20&offset=${offset}?${security}`)
+        .pipe(
+        map(data => data = this.mappingToHeroViewModel(data))
+        );
+    }
+    
   } 
   
   getHero(id: number): Observable<HeroDetailViewModel> {      
-    return this.http.get(`${url}/${id}${security}`)
+    return this.http.get(`${url}/${id}?${security}`)
       .pipe(
       map(data =>data=this.mappingToHeroDetailViewModel(data))
       );

@@ -17,9 +17,10 @@ import { Hero } from '../hero';
 export class HerosComponent implements OnInit {
 
   heros: Hero[] = [];
-  page: number;
-  offset: number;
+  page: number;  
   collectionSize: number;
+  searchName: string;
+  
   constructor(private herosService: HerosService, config: NgbPaginationConfig, private route: ActivatedRoute) {
     config.size = 'sm';
   }
@@ -29,14 +30,12 @@ export class HerosComponent implements OnInit {
     this.getHeros();
   }
 
-  getHeros() {
-    this.herosService.getHerosPagination(this.page * 20 - 20)
-      .subscribe(data => {
-        this.heros = data.heros;
-        this.collectionSize = data.collectionSize * 10;  //pagination bug      
-      });
+  getHeros() {    
+      this.herosService.getHeros(this.page * 20 - 20, this.searchName)
+        .subscribe(data => {
+          console.log(data);
+          this.heros = data.heros;
+          this.collectionSize = data.collectionSize * 10;  //pagination bug      
+        });      
   }
-
-
-
 }
