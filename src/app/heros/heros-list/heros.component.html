@@ -22,7 +22,7 @@
       </div>
       <div class="row">
         <div class="col margin-10">
-          <a class="btn btn-outline-primary" [routerLink]="['/heros', hero.id]" [queryParams]="{ page: page }">See more....</a>
+          <a class="btn btn-outline-primary" (click)='goDetail(hero.id)'>See more....</a>
         </div>
       </div>
     </ng-template>

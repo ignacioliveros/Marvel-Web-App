@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 import { NgbPaginationConfig } from '@ng-bootstrap/ng-bootstrap';
 
@@ -21,13 +22,27 @@ export class HerosComponent implements OnInit {
   collectionSize: number;
   searchName: string;
   
-  constructor(private herosService: HerosService, config: NgbPaginationConfig, private route: ActivatedRoute) {
+  constructor(
+    private herosService: HerosService,
+    private config: NgbPaginationConfig,
+    private route: ActivatedRoute,
+    private router: Router,
+    private location: Location ) {
     config.size = 'sm';
   }
 
   ngOnInit() {
     this.page = +this.route.snapshot.queryParams['page'] || 1;
+    this.searchName = this.route.snapshot.queryParams['searchName'] || '';
+    this.location.replaceState('/heros');    //Reset Url....
     this.getHeros();
+  }
+
+  goDetail(id) {
+    if (this.searchName) {
+      this.router.navigate(['/heros', id], { queryParams: { page: this.page, searchName: this.searchName } });
+    }else
+    this.router.navigate(['/heros', id], { queryParams: { page: this.page } });
   }
 
   getHeros() {    

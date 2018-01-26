@@ -15,12 +15,14 @@ export class HeroDetailComponent implements OnInit {
 
   page: number
   hero: Hero;
+  searchName: string;
 
   constructor(private route: ActivatedRoute, private router: Router, private herosService: HerosService) { }
 
   ngOnInit() {
     let id = +this.route.snapshot.paramMap.get('id');
     this.page = this.route.snapshot.queryParams['page'];
+    this.searchName = this.route.snapshot.queryParams['searchName'];
     this.getHero(id);
   }
 
@@ -30,7 +32,12 @@ export class HeroDetailComponent implements OnInit {
   }
 
   onBack() {
-    this.router.navigate(['/heros'], { queryParams: { page: this.page } });
+    if (this.searchName) {
+      this.router.navigate(['/heros'], { queryParams: { page: this.page, searchName: this.searchName } });
+    } else {
+      this.router.navigate(['/heros'], { queryParams: { page: this.page } });
+    }
+    
   }
 
 }
