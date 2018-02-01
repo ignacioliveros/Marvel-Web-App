@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Hero } from '../hero';
-import { HerosService } from '../hero-services/heros.service'
+import { HeroService } from '../hero-services/hero.service'
 
 
 @Component({
@@ -17,7 +17,7 @@ export class HeroDetailComponent implements OnInit {
   hero: Hero;
   searchName: string;
 
-  constructor(private route: ActivatedRoute, private router: Router, private herosService: HerosService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private heroService: HeroService) { }
 
   ngOnInit() {
     let id = +this.route.snapshot.paramMap.get('id');
@@ -27,17 +27,17 @@ export class HeroDetailComponent implements OnInit {
   }
 
   getHero(id: number) {
-    this.herosService.getHero(id)
-    .subscribe(data=>this.hero=data.hero)  ;
+    this.heroService.getHero(id)
+      .subscribe(data => this.hero = data.hero);
   }
 
   onBack() {
     if (this.searchName) {
-      this.router.navigate(['/heros'], { queryParams: { page: this.page, searchName: this.searchName } });
+      this.router.navigate(['/heroes'], { queryParams: { page: this.page, searchName: this.searchName } });
     } else {
-      this.router.navigate(['/heros'], { queryParams: { page: this.page } });
+      this.router.navigate(['/heroes'], { queryParams: { page: this.page } });
     }
-    
+
   }
 
 }

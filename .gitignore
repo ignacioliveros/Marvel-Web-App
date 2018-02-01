@@ -24,6 +24,7 @@
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+!.vscode/*
 
 # misc
 /.sass-cache
@@ -42,3 +43,4 @@ testem.log
 .DS_Store
 Thumbs.db
 .vscode/launch.json
+/.vscode
