@@ -35,7 +35,7 @@ export class HeroesComponent implements OnInit {
     this.page = +this.route.snapshot.queryParams['page'] || 1;
     this.searchName = this.route.snapshot.queryParams['searchName'] || '';
     this.location.replaceState('/heroes');    //Reset Url....
-    this.getHeros();
+    this.getHeroes();
   }
 
   goDetail(id) {
@@ -45,7 +45,7 @@ export class HeroesComponent implements OnInit {
       this.router.navigate(['/heroes', id], { queryParams: { page: this.page } });
   }
 
-  getHeros() {
+  getHeroes() {
     this.heroService.getHeros(this.page * 20 - 20, this.searchName)
       .subscribe(data => {
         console.log(data);
